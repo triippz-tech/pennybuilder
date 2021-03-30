@@ -24,5 +24,10 @@ spring:
     password: ${JDBC_DATABASE_PASSWORD}
     hikari:
       maximumPoolSize: 8
+  mail:
+    host: smtp.mailgun.org
+    port: 587
+    username: ${MAILGUN_USERNAME}
+    password: ${MAILGUN_PASSWORD}
 server:
   port: ${PORT:8080}
