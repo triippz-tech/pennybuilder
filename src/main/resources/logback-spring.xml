@@ -4,6 +4,16 @@
 <configuration scan="true">
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
+<!--    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>-->
+<!--    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />-->
+
+<!--    <appender name="SENTRY" class="io.sentry.logback.SentryAppender" />-->
+
+<!--    <root level="info">-->
+<!--        <appender-ref ref="CONSOLE" />-->
+<!--        <appender-ref ref="SENTRY" />-->
+<!--    </root>-->
+
 <!-- The FILE and ASYNC appenders are here as examples for a production configuration -->
 <!--
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">

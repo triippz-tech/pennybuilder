@@ -6,7 +6,6 @@ import com.triippztech.pennybuilder.domain.User;
 import com.triippztech.pennybuilder.domain.UserProfile;
 import com.triippztech.pennybuilder.domain.UserSetting;
 import com.triippztech.pennybuilder.repository.AuthorityRepository;
-import com.triippztech.pennybuilder.repository.UserProfileRepository;
 import com.triippztech.pennybuilder.repository.UserRepository;
 import com.triippztech.pennybuilder.repository.UserSettingRepository;
 import com.triippztech.pennybuilder.security.AuthoritiesConstants;
@@ -45,23 +44,21 @@ public class UserService {
 
     private final CacheManager cacheManager;
 
-    private final UserProfileRepository userProfileRepository;
+    private final UserProfileService userProfileService;
 
-    private final UserSettingRepository userSettingRepository;
+    private final UserSettingService userSettingService;
 
     public UserService(
         UserRepository userRepository,
         PasswordEncoder passwordEncoder,
         AuthorityRepository authorityRepository,
-        CacheManager cacheManager,
-        UserProfileRepository userProfileRepository,
-        UserSettingRepository userSettingRepository) {
+        CacheManager cacheManager, UserProfileService userProfileService, UserSettingService userSettingService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
         this.cacheManager = cacheManager;
-        this.userProfileRepository = userProfileRepository;
-        this.userSettingRepository = userSettingRepository;
+        this.userProfileService = userProfileService;
+        this.userSettingService = userSettingService;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -154,9 +151,9 @@ public class UserService {
         this.clearUserCaches(newUser);
         log.debug("Created Information for User: {}", newUser);
 
-        userProfileRepository.save(new UserProfile(newUser));
+        userProfileService.save(new UserProfile(newUser));
         log.debug("Created User Profile for User: {}", newUser);
-        userSettingRepository.save(new UserSetting(newUser));
+        userSettingService.save(new UserSetting(newUser));
         log.debug("Created User Setting for User: {}", newUser);
 
         return newUser;
@@ -205,9 +202,9 @@ public class UserService {
         this.clearUserCaches(user);
         log.debug("Created Information for User: {}", user);
 
-        userProfileRepository.save(new UserProfile(user));
+        userProfileService.save(new UserProfile(user));
         log.debug("Created User Profile for User: {}", user);
-        userSettingRepository.save(new UserSetting(user));
+        userSettingService.save(new UserSetting(user));
         log.debug("Created User Setting for User: {}", user);
 
         return user;
