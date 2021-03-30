@@ -62,6 +62,15 @@ public class UserProfile implements Serializable {
     @JoinColumn(unique = true)
     private User user;
 
+    public UserProfile() {
+    }
+
+    public UserProfile(User user) {
+        this.user = user;
+        this.createdDate = ZonedDateTime.now();
+        this.updatedDate = ZonedDateTime.now();
+    }
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;

@@ -43,6 +43,18 @@ public class UserSetting implements Serializable {
     @JoinColumn(unique = true)
     private User user;
 
+    public UserSetting() {
+    }
+
+    public UserSetting(User user) {
+        this.receiveEmail = true;
+        this.privateProfile = false;
+        this.createdDate = ZonedDateTime.now();
+        this.updatedDate = ZonedDateTime.now();
+
+        this.user = user;
+    }
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
