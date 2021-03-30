@@ -180,5 +180,6 @@ jhipster:
 # application:
 
 iex:
-  public-token:
-  secret-token:
+  token:
+    public:
+    secret:

@@ -31,3 +31,9 @@ spring:
     password: ${MAILGUN_PASSWORD}
 server:
   port: ${PORT:8080}
+
+
+iex:
+  token:
+    public: ${IEX_PUBLIC_TOKEN}
+    secret: ${IEX_SECRET_TOKEN}
