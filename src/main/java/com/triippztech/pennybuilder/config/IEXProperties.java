@@ -11,24 +11,28 @@ public class IEXProperties {
         return token;
     }
 
+    public void setToken(Token token) {
+        this.token = token;
+    }
+
     public static class Token {
-        private String pubicToken;
-        private String secretToken;
+        private String pub;
+        private String secret;
 
-        public String getPubicToken() {
-            return pubicToken;
+        public String getPub() {
+            return pub;
         }
 
-        public void setPubicToken(String pubicToken) {
-            this.pubicToken = pubicToken;
+        public void setPub(String pub) {
+            this.pub = pub;
         }
 
-        public String getSecretToken() {
-            return secretToken;
+        public String getSecret() {
+            return secret;
         }
 
-        public void setSecretToken(String secretToken) {
-            this.secretToken = secretToken;
+        public void setSecret(String secret) {
+            this.secret = secret;
         }
     }
 }

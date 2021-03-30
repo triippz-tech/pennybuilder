@@ -181,5 +181,5 @@ jhipster:
 
 iex:
   token:
-    public:
+    pub:
     secret:

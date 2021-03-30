@@ -35,5 +35,6 @@ server:
 
 iex:
   token:
-    public: ${IEX_PUBLIC_TOKEN}
-    secret: ${IEX_SECRET_TOKEN}
+    pub: ${IEX_TOKEN_PUB}
+    secret: ${IEX_TOKEN_SECRET}
+
