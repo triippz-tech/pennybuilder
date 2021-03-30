@@ -1,0 +1,69 @@
+{
+  "name": "UserProfile",
+  "fields": [
+    {
+      "fieldName": "headline",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "bio",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "location",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nickname",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "profilePicture",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tradingViewUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "twitterUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "facebookUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "bithDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "updatedDate",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "profile",
+      "relationshipName": "user",
+      "ownerSide": true
+    }
+  ],
+  "entityTableName": "user_profile",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["pennybuilder"],
+  "changelogDate": "20210330140524"
+}

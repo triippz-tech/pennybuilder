@@ -1,0 +1,47 @@
+{
+  "name": "PortfolioPosition",
+  "fields": [
+    {
+      "fieldName": "quantity",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "isOpen",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "updatedDate",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "portfolio",
+      "otherEntityRelationshipName": "positions",
+      "relationshipName": "portfolio"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "asset",
+      "otherEntityRelationshipName": "portfolioPositions",
+      "relationshipName": "asset"
+    }
+  ],
+  "entityTableName": "portfolio_position",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["pennybuilder"],
+  "changelogDate": "20210330140924"
+}

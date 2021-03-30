@@ -1,0 +1,290 @@
+
+application {
+  config {
+    baseName pennybuilder,
+    applicationType monolith,
+    packageName com.triippztech.pennybuilder,
+    authenticationType jwt,
+    databaseType sql,
+    prodDatabaseType postgresql,
+    devDatabaseType h2Disk,
+    jhiPrefix pb,
+    serverPort 8085,
+    websocket spring-websocket,
+    clientFramework react,
+    clientTheme darkly,
+    cacheProvider ehcache,
+    serviceDiscoveryType no,
+    enableTranslation false,
+  }
+  entities *
+}
+
+enum FiatCurrency {
+AED
+AFN
+ALL
+AMD
+ANG
+AOA
+ARS
+AUD
+AWG
+AZN
+BAM
+BBD
+BDT
+BGN
+BHD
+BIF
+BMD
+BND
+BOB
+BRL
+BSD
+BTC
+BTN
+BWP
+BYN
+BZD
+CAD
+CDF
+CHF
+CLF
+CLP
+CNH
+CNY
+COP
+CRC
+CUC
+CUP
+CVE
+CZK
+DJF
+DKK
+DOP
+DZD
+EGP
+ERN
+ETB
+EUR
+FJD
+FKP
+GBP
+GEL
+GGP
+GHS
+GIP
+GMD
+GNF
+GTQ
+GYD
+HKD
+HNL
+HRK
+HTG
+HUF
+IDR
+ILS
+IMP
+INR
+IQD
+IRR
+ISK
+JEP
+JMD
+JOD
+JPY
+KES
+KGS
+KHR
+KMF
+KPW
+KRW
+KWD
+KYD
+KZT
+LAK
+LBP
+LKR
+LRD
+LSL
+LYD
+MAD
+MDL
+MGA
+MKD
+MMK
+MNT
+MOP
+MRO
+MRU
+MUR
+MVR
+MWK
+MXN
+MYR
+MZN
+NAD
+NGN
+NIO
+NOK
+NPR
+NZD
+OMR
+PAB
+PEN
+PGK
+PHP
+PKR
+PLN
+PYG
+QAR
+RON
+RSD
+RUB
+RWF
+SAR
+SBD
+SCR
+SDG
+SEK
+SGD
+SHP
+SLL
+SOS
+SRD
+SSP
+STD
+STN
+SVC
+SYP
+SZL
+THB
+TJS
+TMT
+TND
+TOP
+TRY
+TTD
+TWD
+TZS
+UAH
+UGX
+USD
+UYU
+UZS
+VEF
+VES
+VND
+VUV
+WST
+XAF
+XAG
+XAU
+XCD
+XDR
+XOF
+XPD
+XPF
+XPT
+YER
+ZAR
+ZMW
+ZWL
+}
+
+entity UserProfile {
+	headline String,
+    bio TextBlob,
+    location String,
+    nickname String,
+    profilePicture String,
+    tradingViewUrl String,
+    twitterUrl String,
+    facebookUrl String,
+    bithDate LocalDate,
+    createdDate ZonedDateTime,
+    updatedDate ZonedDateTime
+}
+
+entity UserSetting {
+    receiveEmail Boolean required,
+    privateProfile Boolean required,
+    phoneNumber String,
+    createdDate ZonedDateTime,
+    updatedDate ZonedDateTime
+}
+
+entity Asset {
+	name String required,
+    symbol String required,
+    createdDate ZonedDateTime,
+    updatedDate ZonedDateTime
+}
+
+entity Portfolio {
+	portfolioName String required,
+    baseCurrency FiatCurrency required,
+    isActive Boolean required,
+    createdDate ZonedDateTime,
+    updatedDate ZonedDateTime
+}
+
+entity PortfolioPosition {
+	quantity Double required,
+    isOpen Boolean required,
+    createdDate ZonedDateTime,
+    updatedDate ZonedDateTime
+}
+
+entity Watchlist {
+	watchlistName String required,
+    isActive Boolean required,
+    createdDate ZonedDateTime,
+    updatedDate ZonedDateTime
+}
+
+entity WatchlistPosition {
+	createdDate ZonedDateTime,
+    updatedDate ZonedDateTime
+}
+
+relationship ManyToOne {
+  Portfolio{owner} to User{portfolios},
+  Watchlist{owner} to User{watchlists},
+}
+
+relationship OneToMany {
+	Watchlist{positions} to WatchlistPosition{watchlist},
+    Portfolio{positions} to PortfolioPosition{portfolio},
+    Asset{portfolioPositions} to PortfolioPosition{asset},
+    Asset{watchlistPositions} to WatchlistPosition{asset}
+}
+
+relationship OneToOne {
+	UserProfile{user} to User{profile},
+    UserSetting{user} to User{settings}
+}
+
+dto Watchlist, Portfolio, Asset, WatchlistPosition, PortfolioPosition with mapstruct
+
+paginate 
+Watchlist, 
+WatchlistPosition, 
+Portfolio,
+PortfolioPosition,
+Asset
+with pagination
+
+service * with serviceClass
+
+filter Asset
+
+    
+
+
+
+
+
+

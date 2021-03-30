@@ -1,0 +1,47 @@
+{
+  "name": "Asset",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "symbol",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "updatedDate",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "portfolioPosition",
+      "otherEntityRelationshipName": "asset",
+      "relationshipName": "portfolioPositions"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "watchlistPosition",
+      "otherEntityRelationshipName": "asset",
+      "relationshipName": "watchlistPositions"
+    }
+  ],
+  "entityTableName": "asset",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["pennybuilder"],
+  "changelogDate": "20210330140724"
+}

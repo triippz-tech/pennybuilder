@@ -1,0 +1,37 @@
+{
+  "name": "WatchlistPosition",
+  "fields": [
+    {
+      "fieldName": "createdDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "updatedDate",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "watchlist",
+      "otherEntityRelationshipName": "positions",
+      "relationshipName": "watchlist"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "asset",
+      "otherEntityRelationshipName": "watchlistPositions",
+      "relationshipName": "asset"
+    }
+  ],
+  "entityTableName": "watchlist_position",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["pennybuilder"],
+  "changelogDate": "20210330141124"
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity PortfolioPosition.
+    -->
+    <changeSet id="20210330140924-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="portfolio_id"
+                                 baseTableName="portfolio_position"
+                                 constraintName="fk_portfolio_position__portfolio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="portfolio"/>
+
+        <addForeignKeyConstraint baseColumnNames="asset_id"
+                                 baseTableName="portfolio_position"
+                                 constraintName="fk_portfolio_position__asset_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="asset"/>
+
+    </changeSet>
+</databaseChangeLog>
