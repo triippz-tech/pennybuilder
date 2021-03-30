@@ -155,15 +155,15 @@ jhipster:
   #   allow-credentials: true
   #   max-age: 1800
   mail:
-    from: pennybuilder@localhost
+    from: info@pennybuilder.io
   api-docs:
     default-include-pattern: ${server.servlet.context-path:}/api/.*
     management-include-pattern: ${server.servlet.context-path:}/management/.*
-    title: pennybuilder API
-    description: pennybuilder API documentation
+    title: PennyBuilder API
+    description: PennyBuilder API documentation
     version: 0.0.1
     terms-of-service-url:
-    contact-name:
+    contact-name: Mark Tripoli
     contact-url:
     contact-email:
     license: unlicensed

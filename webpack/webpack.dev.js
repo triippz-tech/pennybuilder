@@ -104,7 +104,7 @@ module.exports = options =>
       new webpack.HotModuleReplacementPlugin(),
       new WebpackNotifierPlugin({
         title: 'Pennybuilder',
-        contentImage: path.join(__dirname, 'logo-jhipster.png'),
+        contentImage: path.join(__dirname, 'pb-logo.png'),
       }),
     ].filter(Boolean),
   });
