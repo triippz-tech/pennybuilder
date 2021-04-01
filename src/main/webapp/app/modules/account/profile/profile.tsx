@@ -1,18 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {Link, RouteComponentProps} from 'react-router-dom';
-import {Button, Row, Col, Label, Card, CardImg, CardBody, CardTitle} from 'reactstrap';
-import {AvFeedback, AvForm, AvGroup, AvInput, AvField} from 'availity-reactstrap-validation';
+import {Button, Row, Col, Label} from 'reactstrap';
+import {AvForm, AvGroup, AvInput, AvField} from 'availity-reactstrap-validation';
 import {setFileData, byteSize, translate} from 'react-jhipster';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {IRootState} from 'app/shared/reducers';
 
-import {IUser} from 'app/shared/model/user.model';
 import {getUsers} from 'app/modules/administration/user-management/user-management.reducer';
 import {getEntity, updateEntity, createEntity, setBlob, reset} from 'app/entities/user-profile/user-profile.reducer';
-import {IUserProfile} from 'app/shared/model/user-profile.model';
-import {convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime} from 'app/shared/util/date-utils';
-import {mapIdList} from 'app/shared/util/entity-utils';
+import {convertDateTimeFromServer, convertDateTimeToServer} from 'app/shared/util/date-utils';
 import UserCard from "app/shared/components/user-card";
 
 export interface IProfileUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {
@@ -28,13 +25,13 @@ export const Profile = (props: IProfileUpdateProps) => {
     props.getEntity(props.account.userProfile.id);
   }, []);
 
-  const onBlobChange = (isAnImage, name) => event => {
-    setFileData(event, (contentType, data) => props.setBlob(name, data, contentType), isAnImage);
-  };
-
-  const clearBlob = name => () => {
-    props.setBlob(name, undefined, undefined);
-  };
+  // const onBlobChange = (isAnImage, name) => event => {
+  //   setFileData(event, (contentType, data) => props.setBlob(name, data, contentType), isAnImage);
+  // };
+  //
+  // const clearBlob = name => () => {
+  //   props.setBlob(name, undefined, undefined);
+  // };
 
   const saveEntity = (event, errors, values) => {
     values.createdDate = convertDateTimeToServer(values.createdDate);
