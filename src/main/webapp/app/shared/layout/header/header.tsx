@@ -8,6 +8,7 @@ import LoadingBar from 'react-redux-loading-bar';
 
 import { Home, Brand } from './header-components';
 import { AdminMenu, EntitiesMenu, AccountMenu } from '../menus';
+import {IUser} from "app/shared/model/user.model";
 
 export interface IHeaderProps {
   isAuthenticated: boolean;
@@ -15,6 +16,7 @@ export interface IHeaderProps {
   ribbonEnv: string;
   isInProduction: boolean;
   isOpenAPIEnabled: boolean;
+  account: IUser;
 }
 
 const Header = (props: IHeaderProps) => {
@@ -41,11 +43,11 @@ const Header = (props: IHeaderProps) => {
         <Collapse isOpen={menuOpen} navbar>
           <Nav id="header-tabs" className="ml-auto" navbar>
             <Home />
-            {props.isAuthenticated && <EntitiesMenu />}
+            {props.isAuthenticated && props.isAdmin && <EntitiesMenu />}
             {props.isAuthenticated && props.isAdmin && (
               <AdminMenu showOpenAPI={props.isOpenAPIEnabled} showDatabase={!props.isInProduction} />
             )}
-            <AccountMenu isAuthenticated={props.isAuthenticated} />
+            <AccountMenu isAuthenticated={props.isAuthenticated} account={props.account}/>
           </Nav>
         </Collapse>
       </Navbar>

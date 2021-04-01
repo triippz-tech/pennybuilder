@@ -1,10 +1,13 @@
 import React from 'react';
 import MenuItem from 'app/shared/layout/menus/menu-item';
 
-import { NavDropdown } from './menu-components';
+import {NavDropdown, NavDropdownAvatar} from './menu-components';
 
 const accountMenuItemsAuthenticated = (
   <>
+    <MenuItem icon="wrench" to="/account/profile" data-cy="profile">
+      Profile
+    </MenuItem>
     <MenuItem icon="wrench" to="/account/settings" data-cy="settings">
       Settings
     </MenuItem>
@@ -28,10 +31,18 @@ const accountMenuItems = (
   </>
 );
 
-export const AccountMenu = ({ isAuthenticated = false }) => (
-  <NavDropdown icon="user" name="Account" id="account-menu" data-cy="accountMenu">
-    {isAuthenticated ? accountMenuItemsAuthenticated : accountMenuItems}
-  </NavDropdown>
-);
+export const AccountMenu = ({ isAuthenticated = false, account = null }) => {
+  if (isAuthenticated)
+    return (
+      <NavDropdownAvatar icon="user" name="Account" id="account-menu" data-cy="accountMenu" account={account}>
+        {accountMenuItemsAuthenticated}
+      </NavDropdownAvatar>
+    )
+  return (
+    <NavDropdown icon="user" name="Account" id="account-menu" data-cy="accountMenu">
+      {accountMenuItems}
+    </NavDropdown>
+  )
+};
 
 export default AccountMenu;

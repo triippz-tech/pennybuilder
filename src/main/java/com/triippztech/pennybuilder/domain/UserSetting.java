@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.ZonedDateTime;
 import javax.persistence.*;
 import javax.validation.constraints.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -40,6 +42,7 @@ public class UserSetting implements Serializable {
     private ZonedDateTime updatedDate;
 
     @OneToOne
+    @JsonIgnoreProperties(value = { "userSettings" }, allowSetters = true)
     @JoinColumn(unique = true)
     private User user;
 

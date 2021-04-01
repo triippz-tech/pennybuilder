@@ -1,8 +1,12 @@
 package com.triippztech.pennybuilder.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.triippztech.pennybuilder.config.Constants;
 import com.triippztech.pennybuilder.domain.Authority;
 import com.triippztech.pennybuilder.domain.User;
+import com.triippztech.pennybuilder.domain.UserProfile;
+import com.triippztech.pennybuilder.domain.UserSetting;
+
 import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -48,6 +52,12 @@ public class AdminUserDTO {
 
     private Set<String> authorities;
 
+    @JsonIgnoreProperties(value = { "user" }, allowSetters = true)
+    private UserProfile userProfile;
+
+    @JsonIgnoreProperties(value = { "user" }, allowSetters = true)
+    private UserSetting userSetting;
+
     public AdminUserDTO() {
         // Empty constructor needed for Jackson.
     }
@@ -66,6 +76,8 @@ public class AdminUserDTO {
         this.lastModifiedBy = user.getLastModifiedBy();
         this.lastModifiedDate = user.getLastModifiedDate();
         this.authorities = user.getAuthorities().stream().map(Authority::getName).collect(Collectors.toSet());
+        this.userProfile = user.getUserProfile();
+        this.userSetting = user.getUserSettings();
     }
 
     public Long getId() {
@@ -170,6 +182,22 @@ public class AdminUserDTO {
 
     public void setAuthorities(Set<String> authorities) {
         this.authorities = authorities;
+    }
+
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
+    }
+
+    public UserSetting getUserSetting() {
+        return userSetting;
+    }
+
+    public void setUserSetting(UserSetting userSetting) {
+        this.userSetting = userSetting;
     }
 
     // prettier-ignore

@@ -1,3 +1,6 @@
+import {IUserProfile} from "app/shared/model/user-profile.model";
+import {IUserSetting} from "app/shared/model/user-setting.model";
+
 export interface IUser {
   id?: any;
   login?: string;
@@ -12,6 +15,8 @@ export interface IUser {
   lastModifiedBy?: string;
   lastModifiedDate?: Date | null;
   password?: string;
+  userProfile?: IUserProfile;
+  userSetting?: IUserSetting;
 }
 
 export const defaultValue: Readonly<IUser> = {

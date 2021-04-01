@@ -1,6 +1,7 @@
 package com.triippztech.pennybuilder.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.triippztech.pennybuilder.config.Constants;
 import java.io.Serializable;
 import java.time.Instant;
@@ -92,6 +93,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @BatchSize(size = 20)
     private Set<Authority> authorities = new HashSet<>();
+
+    @JsonIgnoreProperties(value = { "user" }, allowSetters = true)
+    @OneToOne(mappedBy = "user")
+    private UserProfile userProfile;
+
+    @JsonIgnoreProperties(value = { "user" }, allowSetters = true)
+    @OneToOne(mappedBy = "user")
+    private UserSetting userSettings;
 
     public Long getId() {
         return id;
@@ -196,6 +205,22 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
+    }
+
+    public UserSetting getUserSettings() {
+        return userSettings;
+    }
+
+    public void setUserSettings(UserSetting userSettings) {
+        this.userSettings = userSettings;
     }
 
     @Override

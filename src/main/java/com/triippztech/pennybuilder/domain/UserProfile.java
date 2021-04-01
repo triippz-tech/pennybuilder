@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
@@ -59,6 +61,7 @@ public class UserProfile implements Serializable {
     private ZonedDateTime updatedDate;
 
     @OneToOne
+    @JsonIgnoreProperties(value = { "userProfile" }, allowSetters = true)
     @JoinColumn(unique = true)
     private User user;
 

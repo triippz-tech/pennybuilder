@@ -36,6 +36,7 @@ export const App = (props: IAppProps) => {
         <ToastContainer position={toast.POSITION.TOP_LEFT} className="toastify-container" toastClassName="toastify-toast" />
         <ErrorBoundary>
           <Header
+            account={props.account}
             isAuthenticated={props.isAuthenticated}
             isAdmin={props.isAdmin}
             ribbonEnv={props.ribbonEnv}
@@ -62,6 +63,7 @@ const mapStateToProps = ({ authentication, applicationProfile }: IRootState) => 
   ribbonEnv: applicationProfile.ribbonEnv,
   isInProduction: applicationProfile.inProduction,
   isOpenAPIEnabled: applicationProfile.isOpenAPIEnabled,
+  account: authentication.account
 });
 
 const mapDispatchToProps = { getSession, getProfile };
