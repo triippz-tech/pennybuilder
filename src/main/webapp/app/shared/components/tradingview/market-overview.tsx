@@ -119,12 +119,14 @@ export default class TradingViewWidget extends PureComponent {
     interval: IntervalTypes.D,
     locale: 'en',
     save_image: true,
+    // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'onload' implicitly has an 'any' type.
     show_popup_button: false,
     style: BarStyles.CANDLES,
     theme: Themes.LIGHT,
     timezone: 'Etc/UTC',
     toolbar_bg: '#F1F3F6',
     widgetType: 'widget',
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'TradingView'.
     width: 980,
     withdateranges: false
   };
@@ -153,16 +155,20 @@ export default class TradingViewWidget extends PureComponent {
     if (this.scriptExists()) {
       /* global TradingView */
       if (typeof TradingView === 'undefined') {
+        // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'onload' implicitly has an 'any' type.
         this.updateOnloadListener(onload);
         return;
       }
       onload();
+      // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
       return;
     }
+    // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
     const script = document.createElement('script');
     script.id = SCRIPT_ID;
     script.type = 'text/javascript';
     script.async = true;
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'TradingView'.
     script.src = 'https://s3.tradingview.com/tv.js';
     script.onload = onload;
     document.getElementsByTagName('head')[0].appendChild(script);
@@ -188,10 +194,12 @@ export default class TradingViewWidget extends PureComponent {
     if (typeof TradingView === 'undefined' || !document.getElementById(this.containerId)) return;
 
     const { widgetType, ...widgetConfig } = this.props;
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'TradingView'.
     const config = { ...widgetConfig, container_id: this.containerId };
 
     if (config.autosize) {
       delete config.width;
+      // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
       delete config.height;
     }
 
@@ -200,6 +208,7 @@ export default class TradingViewWidget extends PureComponent {
     }
 
     if (config.popup_width && typeof config.popup_width === 'number') {
+      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       config.popup_width = config.popup_width.toString();
     }
 
