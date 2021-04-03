@@ -2,7 +2,8 @@ import './footer.scss';
 
 import React from 'react';
 
-import {Col, Container, Row} from 'reactstrap';
+import {Col, Container, NavLink, Row} from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 const Footer = props => (
   <div className="footer copyright page-content">
@@ -15,16 +16,13 @@ const Footer = props => (
           <div className="copyright-menu">
             <ul>
               <li>
-                <a href="#">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="#">Terms</a>
+                <Link to="/terms">Terms</Link>
               </li>
               <li>
-                <a href="#">Privacy Policy</a>
-              </li>
-              <li>
-                <a href="#">Contact</a>
+                <Link to="/privacy-policy">Privacy Policy</Link>
               </li>
             </ul>
           </div>

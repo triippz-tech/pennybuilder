@@ -30,9 +30,6 @@ public class MailService {
 
     private final Logger log = LoggerFactory.getLogger(MailService.class);
 
-    @Value("classpath:/pb-logo-full.png")
-    Resource resourceFile;
-
     private static final String USER = "user";
 
     private static final String BASE_URL = "baseUrl";
@@ -97,7 +94,7 @@ public class MailService {
         context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
         String content = templateEngine.process(templateName, context);
         String subject = messageSource.getMessage(titleKey, null, locale);
-        sendEmail(user.getEmail(), subject, content, true, true);
+        sendEmail(user.getEmail(), subject, content, false, true);
     }
 
     @Async

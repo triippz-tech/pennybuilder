@@ -15,6 +15,8 @@ import ErrorBoundaryRoute from 'app/shared/error/error-boundary-route';
 import PageNotFound from 'app/shared/error/page-not-found';
 import { AUTHORITIES } from 'app/config/constants';
 import { sendActivity } from 'app/config/websocket-middleware';
+import ToCPage from "app/modules/generic/terms-and-conditions";
+import PrivacyPolicy from "app/modules/generic/privacy-policy";
 
 const Account = Loadable({
   loader: () => import(/* webpackChunkName: "account" */ 'app/modules/account'),
@@ -35,6 +37,8 @@ const Routes = () => {
     <div className="view-routes">
       <Switch>
         <ErrorBoundaryRoute path="/login" component={Login} />
+        <ErrorBoundaryRoute path="/terms" component={ToCPage} />
+        <ErrorBoundaryRoute path="/privacy-policy" component={PrivacyPolicy} />
         <ErrorBoundaryRoute path="/logout" component={Logout} />
         <ErrorBoundaryRoute path="/account/register" component={Register} />
         <ErrorBoundaryRoute path="/account/activate/:key?" component={Activate} />
