@@ -45,15 +45,15 @@ sentry:
   dsn: ${SENTRY_DSN}
 
 jhipster:
-  clientApp:
-    name: 'pennybuilderApp'
-  cors:
-    allowed-origins: "*"
-    allowed-methods: "*"
-    allowed-headers: "*"
-    exposed-headers: "Authorization,Link,X-Total-Count,X-${jhipster.clientApp.name}-alert,X-${jhipster.clientApp.name}-error,X-${jhipster.clientApp.name}-params"
-    allow-credentials: true
-    max-age: 1800
+#  clientApp:
+#    name: 'pennybuilderApp'
+#  cors:
+#    allowed-origins: "lc"
+#    allowed-methods: "*"
+#    allowed-headers: "*"
+#    exposed-headers: "Authorization,Link,X-Total-Count,X-${jhipster.clientApp.name}-alert,X-${jhipster.clientApp.name}-error,X-${jhipster.clientApp.name}-params"
+#    allow-credentials: true
+#    max-age: 1800
   security:
     authentication:
       jwt:
