@@ -45,7 +45,7 @@ export const SymbolInfoWidget = (props: ISymbolInfoWidgetProps) => {
     script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js'
     script.async = true;
     script.innerHTML = JSON.stringify({
-      "container_id": "tv-medium-widget",
+      "container_id": `tradingview-widget-${Math.random()}`,
       "colorTheme": "dark",
       "isTransparent": props.isTransparent,
       "locale": "en",

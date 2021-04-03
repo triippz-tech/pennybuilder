@@ -58,7 +58,7 @@ export const MarketOverview = (props: IMarketOverViewProps) => {
     script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js'
     script.async = true;
     script.innerHTML = JSON.stringify({
-      "container_id": "tv-medium-widget",
+      "container_id": `tradingview-widget-${Math.random()}`,
       "dateRange": props.dateRange,
       "tabs": props.tabs,
       "greyText": "Quotes by",

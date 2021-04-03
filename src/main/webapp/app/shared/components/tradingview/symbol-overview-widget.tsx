@@ -60,7 +60,7 @@ export const SymbolOverviewWidget = (props: ISymbolOverviewWidgetProps) => {
     script.src = 'https://s3.tradingview.com/tv.js'
     script.async = false;
     script.innerHTML = JSON.stringify({
-      "container_id": "tv-medium-widget",
+      "container_id": `tradingview-widget-${Math.random()}`,
       "chartOnly": props.chartOnly,
       "showSymbolLogo": props.showSymbolLogo,
       "colorTheme": "dark",

@@ -58,7 +58,7 @@ export const StockMarket: React.FC<StockMarketProps> = (props) => {
     script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-hotlists.js'
     script.async = false;
     script.innerHTML = JSON.stringify({
-      "container_id": "tv-medium-widget",
+      "container_id": `tradingview-widget-${Math.random()}`,
       "dateRange": props.dateRange,
       "width": `${props.width ? props.width : '100%'}`,
       "height": `${props.height ? props.height : '100%'}`,

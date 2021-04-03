@@ -53,7 +53,7 @@ export const MarketData = (props: IMarketDataProps) => {
     script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js'
     script.async = true;
     script.innerHTML = JSON.stringify({
-      "container_id": "tv-medium-widget",
+      "container_id": `tradingview-widget-${Math.random()}`,
       "width": props.width,
       "height": props.height,
       "showSymbolLogo": true,

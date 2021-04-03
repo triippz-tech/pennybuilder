@@ -84,7 +84,7 @@ export const RealTimeChart = (props: IRealTimeChartProps) => {
     script.src = 'https://s3.tradingview.com/tv.js';
     script.async = true;
     script.innerHTML = JSON.stringify({
-      "container_id": "tv-medium-widget",
+      "container_id": `tradingview-widget-${Math.random()}`,
       "theme": "dark",
       "details": props.showDetails,
       "toolbar_bg": "#f1f3f6",

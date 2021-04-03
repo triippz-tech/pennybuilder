@@ -45,7 +45,7 @@ export const CompanyProfileWidget = (props: ICompanyProfileWidgetProps) => {
     script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-symbol-profile.js'
     script.async = true;
     script.innerHTML = JSON.stringify({
-      "container_id": "tv-medium-widget",
+      "container_id": `tradingview-widget-${Math.random()}`,
       "colorTheme": "dark",
       "isTransparent": props.isTransparent,
       "locale": "en",

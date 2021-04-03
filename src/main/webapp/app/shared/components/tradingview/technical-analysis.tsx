@@ -57,7 +57,7 @@ export const TechnicalAnalysis = (props: ITechnicalAnalysisProps) => {
     script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js'
     script.async = true;
     script.innerHTML = JSON.stringify({
-      "container_id": "tv-medium-widget",
+      "container_id": `tradingview-widget-${Math.random()}`,
       "symbol": props.symbol,
       "isTransparent": props.isTransparent,
       "showIntervalTabs": props.showIntervalTabs,

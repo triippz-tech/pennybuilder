@@ -54,7 +54,7 @@ export const TickerTapeWidget = (props: ITickerTapeWidgetProps) => {
     script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js'
     script.async = true;
     script.innerHTML = JSON.stringify({
-      "container_id": "tv-medium-widget",
+      "container_id": `tradingview-widget-${Math.random()}`,
       "showSymbolLogo": props.showSymbolLogo,
       "colorTheme": "dark",
       "isTransparent": props.isTransparent,
