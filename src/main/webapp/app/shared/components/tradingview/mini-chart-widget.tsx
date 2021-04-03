@@ -25,56 +25,49 @@ export enum DateRange {
   ALL = "ALL"
 }
 
-export interface Symbols {
-  s: string;
-  d?: string;
-}
-
-export interface Tabs {
-  title: string;
-  originalTitle: string;
-  symbols: Symbols[];
-}
-
-export interface IMarketOverViewProps {
-  tabs: Tabs[];
-  height?: string;
+export interface IMiniChartWidgetProps {
+  symbol: string;
   width?: string;
-  dateRange?: DateRange;
   isTransparent?: boolean;
   showSymbolLogo?: boolean;
+  height?: string;
+  dateRange?: DateRange;
 }
 
+const defaultProps: IMiniChartWidgetProps = {
+  symbol: "BTCUSD",
+  width: "100%",
+  height: "100%",
+  isTransparent: false,
+  showSymbolLogo: true,
+  dateRange: DateRange.DAY_1
+}
+
+
 /**
- * TradingView Widget for Market Overviews
- * https://www.tradingview.com/widget/market-overview/
- * @param props {@link IMarketOverViewProps}
+ * TradingView Widget for Symbol Mini Charts
+ * https://www.tradingview.com/widget/mini-chart/
+ * @param props {@link IMiniChartWidgetProps}
  */
-export const MarketOverview = (props: IMarketOverViewProps) => {
+export const MiniChartWidget = (props: IMiniChartWidgetProps) => {
   const myRef = React.createRef<HTMLDivElement>();
 
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js'
-    script.async = true;
+    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js'
+    script.async = false;
     script.innerHTML = JSON.stringify({
       "container_id": "tv-medium-widget",
-      "dateRange": props.dateRange,
-      "tabs": props.tabs,
-      "greyText": "Quotes by",
-      "plotLineColorGrowing": "rgba(25, 118, 210, 1)",
-      "plotLineColorFalling": "rgba(25, 118, 210, 1)",
-      "gridLineColor": "rgba(42, 46, 57, 1)",
-      "scaleFontColor": "rgba(120, 123, 134, 1)",
-      "belowLineFillColorGrowing": "rgba(33, 150, 243, 0.12)",
-      "belowLineFillColorFalling": "rgba(33, 150, 243, 0.12)",
-      "symbolActiveColor": "rgba(33, 150, 243, 0.12)",
-      "width": props.width,
-      "height": props.height,
-      "locale": "en",
+      "showSymbolLogo": props.showSymbolLogo,
       "colorTheme": "dark",
       "isTransparent": props.isTransparent,
-      "showSymbolLogo": props.showSymbolLogo,
+      "trendLineColor": "#37a6ef",
+      "underLineColor": "rgba(55, 166, 239, 0.15)",
+      "locale": "en",
+      "symbol": props.symbol,
+      "height": props.height,
+      "width": props.width,
+      "dateRange": props.dateRange
     })
     myRef.current.appendChild(script);
   }, []);
@@ -85,3 +78,7 @@ export const MarketOverview = (props: IMarketOverViewProps) => {
     </div>
   );
 }
+
+MiniChartWidget.defaultProps = defaultProps;
+
+export default MiniChartWidget;

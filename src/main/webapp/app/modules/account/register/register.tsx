@@ -37,6 +37,9 @@ export const RegisterPage = (props: IRegisterProps) => {
         </Col>
       </Row>
       <Row className="justify-content-center">
+        <Alert color="danger">
+          WE ARE NOT RESPONSIBLE FOR ANY GAINS OR LOSSES YOU MAY INCUR FROM OUR DATA OR PLATFORM. PLEASE INVEST RESPONSIBLY AND DON{"'"}T BE AN IDIOT.
+        </Alert>
         <Col md="8">
           <AvForm id="register-form" onValidSubmit={handleValidSubmit}>
             <AvField
@@ -97,16 +100,6 @@ export const RegisterPage = (props: IRegisterProps) => {
               Register
             </Button>
           </AvForm>
-          <p>&nbsp;</p>
-          <Alert color="warning">
-            <span>If you want to</span>
-            <a className="alert-link"> sign in</a>
-            <span>
-              , you can try the default accounts:
-              <br />- Administrator (login=&quot;admin&quot; and password=&quot;admin&quot;)
-              <br />- User (login=&quot;user&quot; and password=&quot;user&quot;).
-            </span>
-          </Alert>
         </Col>
       </Row>
     </div>

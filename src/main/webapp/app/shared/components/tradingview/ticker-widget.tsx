@@ -16,65 +16,43 @@
 
 import React, {useEffect} from "react";
 
-export enum DateRange {
-  DAY_1= "1D",
-  MONTH_1 = "1M",
-  MONTH_3 = "3M",
-  YEAR_1 = "1Y",
-  YEAR_5 = "5Y",
-  ALL = "ALL"
-}
-
 export interface Symbols {
-  s: string;
-  d?: string;
+  proName: string;
+  title?: string;
 }
 
-export interface Tabs {
-  title: string;
-  originalTitle: string;
+export interface ITickerWidgetProps {
   symbols: Symbols[];
-}
-
-export interface IMarketOverViewProps {
-  tabs: Tabs[];
-  height?: string;
-  width?: string;
-  dateRange?: DateRange;
   isTransparent?: boolean;
   showSymbolLogo?: boolean;
 }
 
+const defaultProps: ITickerWidgetProps = {
+  symbols: [],
+  isTransparent: false,
+  showSymbolLogo: true
+}
+
+
 /**
- * TradingView Widget for Market Overviews
- * https://www.tradingview.com/widget/market-overview/
- * @param props {@link IMarketOverViewProps}
+ * TradingView Widget for Tickers
+ * https://www.tradingview.com/widget/ticker/
+ * @param props {@link ITickerWidgetProps}
  */
-export const MarketOverview = (props: IMarketOverViewProps) => {
+export const TickerWidget = (props: ITickerWidgetProps) => {
   const myRef = React.createRef<HTMLDivElement>();
 
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js'
+    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-tickers.js'
     script.async = true;
     script.innerHTML = JSON.stringify({
       "container_id": "tv-medium-widget",
-      "dateRange": props.dateRange,
-      "tabs": props.tabs,
-      "greyText": "Quotes by",
-      "plotLineColorGrowing": "rgba(25, 118, 210, 1)",
-      "plotLineColorFalling": "rgba(25, 118, 210, 1)",
-      "gridLineColor": "rgba(42, 46, 57, 1)",
-      "scaleFontColor": "rgba(120, 123, 134, 1)",
-      "belowLineFillColorGrowing": "rgba(33, 150, 243, 0.12)",
-      "belowLineFillColorFalling": "rgba(33, 150, 243, 0.12)",
-      "symbolActiveColor": "rgba(33, 150, 243, 0.12)",
-      "width": props.width,
-      "height": props.height,
-      "locale": "en",
+      "showSymbolLogo": props.showSymbolLogo,
       "colorTheme": "dark",
       "isTransparent": props.isTransparent,
-      "showSymbolLogo": props.showSymbolLogo,
+      "locale": "en",
+      "symbols": props.symbols
     })
     myRef.current.appendChild(script);
   }, []);
@@ -85,3 +63,7 @@ export const MarketOverview = (props: IMarketOverViewProps) => {
     </div>
   );
 }
+
+TickerWidget.defaultProps = defaultProps;
+
+export default TickerWidget;

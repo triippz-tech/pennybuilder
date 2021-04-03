@@ -2,22 +2,35 @@ import './footer.scss';
 
 import React from 'react';
 
-import {Col, Row} from 'reactstrap';
+import {Col, Container, Row} from 'reactstrap';
 
 const Footer = props => (
-  <div className="footer page-content">
-    <div className="container-fluid">
-      <Row>
-        <Col md="6" lg="5" className="text-center mb-4 mb-md-0">
-          <h6 className="mb-0 white-text text-center">
-            &copy; {new Date().getFullYear()} Copyright:{" "}
-            <a href="https://pennybuilder.io">
-              PennyBuilder
-            </a>
-          </h6>
-        </Col>
-      </Row>
-    </div>
+  <div className="footer copyright page-content">
+    <Container>
+      <div className="row">
+        <div className="col-md-6">
+          <span>Copyright © 2021, All Right Reserved PennyBuilder</span>
+        </div>
+        <div className="col-md-6">
+          <div className="copyright-menu">
+            <ul>
+              <li>
+                <a href="#">Home</a>
+              </li>
+              <li>
+                <a href="#">Terms</a>
+              </li>
+              <li>
+                <a href="#">Privacy Policy</a>
+              </li>
+              <li>
+                <a href="#">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </Container>
   </div>
 );
 

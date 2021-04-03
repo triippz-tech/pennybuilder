@@ -52,7 +52,7 @@ $rightbar-width:  280px;
 $display-none: block;
 $display-block: none;
 
-// Brand 
+// Brand
 $navbar-brand-box-width: 250px;
 
 // Boxed layout width
@@ -314,17 +314,17 @@ $gradient: linear-gradient(180deg, rgba($white, .15), rgba($white, 0));
 // variables. Mostly focused on spacing.
 // You can add more entries to the $spacers map, should you need more variation.
 
-$spacer: 1rem;
-$spacers: (
-    0: 0,
-    1: ($spacer * .25),
-    2: ($spacer * .5),
-    3: $spacer,
-    4: ($spacer * 1.5),
-    5: ($spacer * 3)
-);
-
-$negative-spacers: if($enable-negative-margins, negativify-map($spacers), null);
+//$spacer: 1rem;
+//$spacers: (
+//    0: 0,
+//    1: ($spacer * .25),
+//    2: ($spacer * .5),
+//    3: $spacer,
+//    4: ($spacer * 1.5),
+//    5: ($spacer * 3)
+//);
+//
+//$negative-spacers: if($enable-negative-margins, negativify-map($spacers), null);
 
 // Position
 //

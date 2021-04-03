@@ -1,6 +1,6 @@
-# pennybuilder
+# PennyBuilder
 
-This application was generated using JHipster 7.0.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v7.0.0](https://www.jhipster.tech/documentation-archive/v7.0.0).
+[![Build](https://github.com/triippz-tech/pennybuilder/actions/workflows/github-actions.yml/badge.svg)](https://github.com/triippz-tech/pennybuilder/actions/workflows/github-actions.yml)
 
 ## Development
 
@@ -32,24 +32,6 @@ Add the `help` flag on any command to see how you can use it. For example, `npm 
 
 The `npm run` command will list all of the scripts available to run for this project.
 
-### PWA Support
-
-JHipster ships with PWA (Progressive Web App) support, and it's turned off by default. One of the main components of a PWA is a service worker.
-
-The service worker initialization code is commented out by default. To enable it, uncomment the following code in `src/main/webapp/index.html`:
-
-```html
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./service-worker.js').then(function () {
-      console.log('Service Worker Registered');
-    });
-  }
-</script>
-```
-
-Note: [Workbox](https://developers.google.com/web/tools/workbox/) powers JHipster's service worker. It dynamically generates the `service-worker.js` file.
-
 ### Managing dependencies
 
 For example, to add [Leaflet][] library as a runtime dependency of your application, you would run following command:
@@ -67,7 +49,6 @@ npm install --save-dev --save-exact @types/leaflet
 Then you would import the JS and CSS files specified in library's installation instructions so that [Webpack][] knows about them:
 Note: There are still a few other things remaining to do for Leaflet that we won't detail here.
 
-For further instructions on how to develop with JHipster, have a look at [Using JHipster in development][].
 
 ## Building for production
 
@@ -87,8 +68,6 @@ java -jar target/*.jar
 ```
 
 Then navigate to [http://localhost:8085](http://localhost:8085) in your browser.
-
-Refer to [Using JHipster in production][] for more details.
 
 ### Packaging as war
 
@@ -140,11 +119,9 @@ If you need to re-run the Sonar phase, please be sure to specify at least the `i
 ./mvnw initialize sonar:sonar
 ```
 
-For more information, refer to the [Code quality page][].
-
 ## Using Docker to simplify development (optional)
 
-You can use Docker to improve your JHipster development experience. A number of docker-compose configuration are available in the [src/main/docker](src/main/docker) folder to launch required third party services.
+You can use Docker to improve your development experience. A number of docker-compose configuration are available in the [src/main/docker](src/main/docker) folder to launch required third party services.
 
 For example, to start a postgresql database in a docker container, run:
 
@@ -171,20 +148,7 @@ Then run:
 docker-compose -f src/main/docker/app.yml up -d
 ```
 
-For more information refer to [Using Docker and Docker-Compose][], this page also contains information on the docker-compose sub-generator (`jhipster docker-compose`), which is able to generate docker configurations for one or several JHipster applications.
 
-## Continuous Integration (optional)
-
-To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][] page for more information.
-
-[jhipster homepage and latest documentation]: https://www.jhipster.tech
-[jhipster 7.0.0 archive]: https://www.jhipster.tech/documentation-archive/v7.0.0
-[using jhipster in development]: https://www.jhipster.tech/documentation-archive/v7.0.0/development/
-[using docker and docker-compose]: https://www.jhipster.tech/documentation-archive/v7.0.0/docker-compose
-[using jhipster in production]: https://www.jhipster.tech/documentation-archive/v7.0.0/production/
-[running tests page]: https://www.jhipster.tech/documentation-archive/v7.0.0/running-tests/
-[code quality page]: https://www.jhipster.tech/documentation-archive/v7.0.0/code-quality/
-[setting up continuous integration]: https://www.jhipster.tech/documentation-archive/v7.0.0/setting-up-ci/
 [node.js]: https://nodejs.org/
 [webpack]: https://webpack.github.io/
 [browsersync]: https://www.browsersync.io/

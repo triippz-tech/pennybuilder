@@ -14,7 +14,7 @@
    limitations under the License.
  */
 
-import React, {useEffect} from "react";
+import React, {PropsWithChildren, useEffect} from "react";
 
 export enum DateRange {
   DAY_1= "1D",
@@ -25,56 +25,56 @@ export enum DateRange {
   ALL = "ALL"
 }
 
-export interface Symbols {
-  s: string;
-  d?: string;
-}
-
-export interface Tabs {
-  title: string;
-  originalTitle: string;
-  symbols: Symbols[];
-}
-
-export interface IMarketOverViewProps {
-  tabs: Tabs[];
+interface StockMarketProps extends PropsWithChildren<any>{
   height?: string;
   width?: string;
   dateRange?: DateRange;
   isTransparent?: boolean;
+  showChart?: boolean;
+  exchange?: string;
   showSymbolLogo?: boolean;
 }
 
+const defaultProps: StockMarketProps = {
+  height: "100%",
+  width: "100%",
+  dateRange: DateRange.YEAR_1,
+  isTransparent: false,
+  showChart: true,
+  exchange: "US",
+  showSymbolLogo: true,
+}
+
 /**
- * TradingView Widget for Market Overviews
+ * TradingView Widget for Stock Market Top 5 Gaining, Losing, and active stocks for the day
  * https://www.tradingview.com/widget/market-overview/
- * @param props {@link IMarketOverViewProps}
+ * @param props {@link StockMarketProps}
  */
-export const MarketOverview = (props: IMarketOverViewProps) => {
+export const StockMarket: React.FC<StockMarketProps> = (props) => {
   const myRef = React.createRef<HTMLDivElement>();
 
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js'
-    script.async = true;
+    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-hotlists.js'
+    script.async = false;
     script.innerHTML = JSON.stringify({
       "container_id": "tv-medium-widget",
       "dateRange": props.dateRange,
-      "tabs": props.tabs,
-      "greyText": "Quotes by",
+      "width": `${props.width ? props.width : '100%'}`,
+      "height": `${props.height ? props.height : '100%'}`,
+      "showChart": props.showChart,
+      "colorTheme": "dark",
+      "isTransparent": props.isTransparent,
+      "exchange": props.exchange,
+      "showSymbolLogo": props.showSymbolLogo,
+      "locale": "en",
       "plotLineColorGrowing": "rgba(25, 118, 210, 1)",
       "plotLineColorFalling": "rgba(25, 118, 210, 1)",
       "gridLineColor": "rgba(42, 46, 57, 1)",
       "scaleFontColor": "rgba(120, 123, 134, 1)",
       "belowLineFillColorGrowing": "rgba(33, 150, 243, 0.12)",
       "belowLineFillColorFalling": "rgba(33, 150, 243, 0.12)",
-      "symbolActiveColor": "rgba(33, 150, 243, 0.12)",
-      "width": props.width,
-      "height": props.height,
-      "locale": "en",
-      "colorTheme": "dark",
-      "isTransparent": props.isTransparent,
-      "showSymbolLogo": props.showSymbolLogo,
+      "symbolActiveColor": "rgba(33, 150, 243, 0.12)"
     })
     myRef.current.appendChild(script);
   }, []);
@@ -85,3 +85,6 @@ export const MarketOverview = (props: IMarketOverViewProps) => {
     </div>
   );
 }
+
+StockMarket.defaultProps = defaultProps;
+export default StockMarket;

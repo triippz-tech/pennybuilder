@@ -18,6 +18,7 @@ import { hasAnyAuthority } from 'app/shared/auth/private-route';
 import ErrorBoundary from 'app/shared/error/error-boundary';
 import { AUTHORITIES } from 'app/config/constants';
 import AppRoutes from 'app/routes';
+import GainersLosers from "app/shared/components/gainers-losers";
 
 const baseHref = document.querySelector('base').getAttribute('href').replace(/\/$/, '');
 
@@ -45,6 +46,7 @@ export const App = (props: IAppProps) => {
           />
         </ErrorBoundary>
         <div className="container-fluid view-container" id="app-view-container">
+          <GainersLosers />
           <Card className="jh-card">
             <ErrorBoundary>
               <AppRoutes />

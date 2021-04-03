@@ -1,31 +1,42 @@
 import './home.scss';
 
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 
-import { connect } from 'react-redux';
-import { Row, Col, Alert } from 'reactstrap';
+import {connect} from 'react-redux';
+import {Col, Row} from 'reactstrap';
+import TimelineWidget from "app/shared/components/tradingview/timeline-widget";
+import GainersLosers from "app/shared/components/gainers-losers";
+import FundamentalDataWidget from "app/shared/components/tradingview/fundamental-data-widget";
+import TechnicalAnalysis from "app/shared/components/tradingview/technical-analysis";
+import RealTimeChart from "app/shared/components/tradingview/real-time-chart";
+import SymbolOverviewWidget from "app/shared/components/tradingview/symbol-overview-widget";
+import SymbolInfoWidget from "app/shared/components/tradingview/symbol-info-widget";
 
 export type IHomeProp = StateProps;
 
 export const Home = (props: IHomeProp) => {
-  const { account } = props;
+  const {account} = props;
 
   return (
-    <Row>
-      <Col md="3" className="pad">
-        <span className="hipster rounded" />
-      </Col>
-      <Col md="9">
-        <h2>Welcome, You Broke Bastard!</h2>
-        <p className="lead">Let{"'"}s get brokkeddd</p>
-        {account && account.login ? (
-          <div>
-            <Alert color="success">You are logged in as user {account.login}.</Alert>
-          </div>
-        ) : null}
-      </Col>
-    </Row>
+    <>
+      <Row className={"d-flex justify-content-center"}>
+        <Col md="6">
+          <SymbolInfoWidget symbol={"GME"} />
+        </Col>
+      </Row>
+      <br/>
+      <Row>
+        <Col md="4">
+          <FundamentalDataWidget symbol={"GME"}/>
+        </Col>
+        <Col md="4">
+          <TechnicalAnalysis symbol={"GME"}/>
+        </Col>
+        <Col md="4">
+          <TimelineWidget symbol={"GME"}/>
+        </Col>
+      </Row>
+    </>
   );
 };
 

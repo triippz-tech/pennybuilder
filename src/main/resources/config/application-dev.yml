@@ -32,25 +32,35 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:file:./target/h2db/db/pennybuilder;DB_CLOSE_DELAY=-1
-    username: pennybuilder
-    password:
+    url: jdbc:postgresql://localhost:5432/pennybuilder
+    username: test
+    password: test
     hikari:
       poolName: Hikari
       auto-commit: false
-  h2:
-    console:
-      enabled: false
   jpa:
-    database-platform: tech.jhipster.domain.util.FixedH2Dialect
+    database-platform: tech.jhipster.domain.util.FixedPostgreSQL10Dialect
+#  datasource:
+#    type: com.zaxxer.hikari.HikariDataSource
+#    url: jdbc:h2:file:./target/h2db/db/pennybuilder;DB_CLOSE_DELAY=-1
+#    username: pennybuilder
+#    password:
+#    hikari:
+#      poolName: Hikari
+#      auto-commit: false
+#  h2:
+#    console:
+#      enabled: false
+#  jpa:
+#    database-platform: tech.jhipster.domain.util.FixedH2Dialect
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
-    contexts: dev, faker
+    contexts: dev
   mail:
-    host: localhost
-    port: 25
-    username:
-    password:
+    host: ${SPRING_MAIL_HOST}
+    port: ${SPRING_MAIL_PORT}
+    username: ${SPRING_MAIL_USERNAME}
+    password: ${SPRING_MAIL_PASSWORD}
   messages:
     cache-duration: PT1S # 1 second, see the ISO 8601 standard
   thymeleaf:
