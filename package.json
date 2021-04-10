@@ -1,6 +1,6 @@
 {
   "name": "pennybuilder",
-  "version": "0.0.1-SNAPSHOT",
+  "version": "0.0.2-SNAPSHOT",
   "private": true,
   "description": "Description for pennybuilder",
   "license": "UNLICENSED",
@@ -74,8 +74,7 @@
     "ajv": "^7.2.4",
     "availity-reactstrap-validation": "^2.7.1",
     "availity-uikit": "^3.2.2",
-    "axios": "^0.19.2",
-    "big.js": "^6.0.3",
+    "axios": "^0.21.1",
     "bootstrap": "4.6.0",
     "bootswatch": "4.6.0",
     "dayjs": "1.10.4",
