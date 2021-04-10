@@ -2,15 +2,21 @@ package com.triippztech.pennybuilder.service;
 
 import com.triippztech.pennybuilder.domain.Asset;
 import com.triippztech.pennybuilder.repository.AssetRepository;
+import com.triippztech.pennybuilder.service.criteria.AssetCriteria;
 import com.triippztech.pennybuilder.service.dto.AssetDTO;
+import com.triippztech.pennybuilder.service.iex.IEXInfoService;
 import com.triippztech.pennybuilder.service.mapper.AssetMapper;
+
+import java.util.List;
 import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.zankowski.iextrading4j.api.refdata.v1.SymbolDescription;
 
 /**
  * Service Implementation for managing {@link Asset}.
@@ -25,9 +31,12 @@ public class AssetService {
 
     private final AssetMapper assetMapper;
 
-    public AssetService(AssetRepository assetRepository, AssetMapper assetMapper) {
+    private final IEXInfoService iexInfoService;
+
+    public AssetService(AssetRepository assetRepository, AssetMapper assetMapper, IEXInfoService iexInfoService) {
         this.assetRepository = assetRepository;
         this.assetMapper = assetMapper;
+        this.iexInfoService = iexInfoService;
     }
 
     /**
@@ -88,6 +97,12 @@ public class AssetService {
         return assetRepository.findById(id).map(assetMapper::toDto);
     }
 
+    @Transactional(readOnly = true)
+    public Optional<AssetDTO> findBySymbol(String symbol) {
+        log.debug("Request to get Asset : {}", symbol);
+        return assetRepository.findBySymbolEquals(symbol).map(assetMapper::toDto);
+    }
+
     /**
      * Delete the asset by id.
      *
@@ -96,5 +111,19 @@ public class AssetService {
     public void delete(Long id) {
         log.debug("Request to delete Asset : {}", id);
         assetRepository.deleteById(id);
+    }
+
+    public List<SymbolDescription> queryAssets(AssetCriteria criteria) {
+        return iexInfoService.searchAssets(criteria.getSymbol().getContains());//.stream()
+//            .map(symbolDescription -> {
+//                var found = assetRepository.findByNameEquals(symbolDescription.getSecurityName());
+//                if (found.isPresent())
+//                    return assetMapper.toDto(found.get());
+//                return save(new AssetDTO(
+//                    symbolDescription.getSymbol(),
+//                    symbolDescription.getSecurityName(),
+//                    ZonedDateTime.now()));
+//            })
+//            .collect(Collectors.toList());
     }
 }

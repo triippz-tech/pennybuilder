@@ -23,6 +23,11 @@ const Account = Loadable({
   loading: () => <div>loading ...</div>,
 });
 
+const UserPortfolios = Loadable({
+  loader: () => import(/* webpackChunkName: "account" */ 'app/modules/portfolios'),
+  loading: () => <div>loading ...</div>,
+});
+
 const Admin = Loadable({
   loader: () => import(/* webpackChunkName: "administration" */ 'app/modules/administration'),
   loading: () => <div>loading ...</div>,
@@ -44,10 +49,11 @@ const Routes = () => {
         <ErrorBoundaryRoute path="/account/activate/:key?" component={Activate} />
         <ErrorBoundaryRoute path="/account/reset/request" component={PasswordResetInit} />
         <ErrorBoundaryRoute path="/account/reset/finish/:key?" component={PasswordResetFinish} />
+        <PrivateRoute path="/portfolios" component={UserPortfolios} hasAnyAuthorities={[AUTHORITIES.USER]} />
         <PrivateRoute path="/admin" component={Admin} hasAnyAuthorities={[AUTHORITIES.ADMIN]} />
         <PrivateRoute path="/account" component={Account} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER]} />
         <ErrorBoundaryRoute path="/" exact component={Home} />
-        <PrivateRoute path="/" component={Entities} hasAnyAuthorities={[AUTHORITIES.USER]} />
+        {/* <PrivateRoute path="/" component={Entities} hasAnyAuthorities={[AUTHORITIES.USER]} /> */}
         <ErrorBoundaryRoute component={PageNotFound} />
       </Switch>
     </div>

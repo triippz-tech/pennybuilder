@@ -49,6 +49,15 @@ public class Asset implements Serializable {
     @JsonIgnoreProperties(value = { "watchlist", "asset" }, allowSetters = true)
     private Set<WatchlistPosition> watchlistPositions = new HashSet<>();
 
+    public Asset() {
+    }
+
+    public Asset(@NotNull String name, @NotNull String symbol, ZonedDateTime createdDate) {
+        this.name = name;
+        this.symbol = symbol;
+        this.createdDate = createdDate;
+    }
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;

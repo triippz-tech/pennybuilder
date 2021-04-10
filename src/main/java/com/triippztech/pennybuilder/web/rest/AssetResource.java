@@ -19,10 +19,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import pl.zankowski.iextrading4j.api.refdata.v1.SymbolDescription;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -197,5 +197,17 @@ public class AssetResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    /**
+     * {@code GET  /assets/search} : Searches for assets.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of assets in body.
+     */
+    @GetMapping("/assets/search")
+    public ResponseEntity<List<SymbolDescription>> searchAssetsIEX(AssetCriteria criteria) {
+        log.debug("REST request to search Assets by criteria: {}", criteria);
+        List<SymbolDescription> assets = assetService.queryAssets(criteria);
+        return ResponseEntity.ok().body(assets);
     }
 }

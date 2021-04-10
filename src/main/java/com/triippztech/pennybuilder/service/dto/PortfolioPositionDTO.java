@@ -26,6 +26,17 @@ public class PortfolioPositionDTO implements Serializable {
 
     private AssetDTO asset;
 
+    public PortfolioPositionDTO() {
+    }
+
+    public PortfolioPositionDTO(PortfolioDTO portfolio, AssetDTO asset) {
+        this.portfolio = portfolio;
+        this.asset = asset;
+        this.createdDate = ZonedDateTime.now();
+        this.isOpen = true;
+        this.quantity = 0D;
+    }
+
     public Long getId() {
         return id;
     }

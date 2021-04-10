@@ -35,6 +35,7 @@ export const App = (props: IAppProps) => {
     <Router basename={baseHref}>
       <div className="app-container" style={{ paddingTop }}>
         <ToastContainer position={toast.POSITION.TOP_LEFT} className="toastify-container" toastClassName="toastify-toast" />
+        <GainersLosers />
         <ErrorBoundary>
           <Header
             account={props.account}
@@ -46,7 +47,6 @@ export const App = (props: IAppProps) => {
           />
         </ErrorBoundary>
         <div className="container-fluid view-container" id="app-view-container">
-          <GainersLosers />
           <Card className="jh-card">
             <ErrorBoundary>
               <AppRoutes />

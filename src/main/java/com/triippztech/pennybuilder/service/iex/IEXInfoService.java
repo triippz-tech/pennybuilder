@@ -21,12 +21,18 @@ package com.triippztech.pennybuilder.service.iex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import pl.zankowski.iextrading4j.api.refdata.v1.SymbolDescription;
 import pl.zankowski.iextrading4j.api.stocks.Quote;
+import pl.zankowski.iextrading4j.api.stocks.v1.BatchStocks;
+import pl.zankowski.iextrading4j.client.rest.request.refdata.v1.SearchSymbolRequestBuilder;
 import pl.zankowski.iextrading4j.client.rest.request.stocks.ListRequestBuilder;
 import pl.zankowski.iextrading4j.client.rest.request.stocks.ListType;
 import pl.zankowski.iextrading4j.client.rest.request.stocks.QuoteRequestBuilder;
+import pl.zankowski.iextrading4j.client.rest.request.stocks.v1.BatchMarketStocksRequestBuilder;
+import pl.zankowski.iextrading4j.client.rest.request.stocks.v1.BatchStocksType;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -52,5 +58,17 @@ public class IEXInfoService {
         return this.iexTradingConfig.getConnection().executeRequest(new QuoteRequestBuilder()
             .withSymbol(asset.toLowerCase())
             .build());
+    }
+
+    public Map<String, BatchStocks> getQuotes(List<String> assets) {
+        var batchStocksRequestBuilder = new BatchMarketStocksRequestBuilder();
+        assets.forEach(batchStocksRequestBuilder::withSymbol);
+        return this.iexTradingConfig.getConnection().executeRequest(
+            batchStocksRequestBuilder.addType(BatchStocksType.QUOTE).build());
+    }
+
+    public List<SymbolDescription> searchAssets(String query) {
+        return iexTradingConfig.getConnection().executeRequest(
+                new SearchSymbolRequestBuilder().withFragment(query).build());
     }
 }

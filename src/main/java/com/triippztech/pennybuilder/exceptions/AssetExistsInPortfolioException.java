@@ -15,35 +15,10 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React, {useEffect, useState} from "react";
-import axios from "axios";
-import TickerTapeWidget from "app/shared/components/tradingview/ticker-tape-widget";
 
+package com.triippztech.pennybuilder.exceptions;
 
-export const GainersLosers = () => {
-  const [symbolList, setSymbolList] = useState<string[]>([]);
-  const [render, setRender] = useState(false);
-
-  useEffect(() => {
-    axios.get("/api/iex/gainers-losers").then(results => {
-      if (results.status === 200) {
-        setSymbolList(results.data);
-        setRender(true);
-      }
-    })
-  }, [])
-
-  if (render)
-    return (
-      <div className="pagewide fixed-top">
-        <TickerTapeWidget symbols={symbolList.map((symbol) => {
-          return {
-            proName: symbol
-          }
-        })} />
-      </div>
-    )
-  return null;
+public class AssetExistsInPortfolioException extends Exception{
+    public AssetExistsInPortfolioException(String msg) {super(msg);}
+    public AssetExistsInPortfolioException(String msg, Throwable e) { super(msg, e);}
 }
-
-export default GainersLosers;

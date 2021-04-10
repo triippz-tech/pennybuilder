@@ -34,11 +34,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.zankowski.iextrading4j.api.stocks.Quote;
 import tech.jhipster.web.util.PaginationUtil;
 
-import javax.validation.constraints.Pattern;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/assets")
+@RequestMapping("/api/iex")
 public class IEXInfoController {
     private final Logger log = LoggerFactory.getLogger(IEXInfoController.class);
 

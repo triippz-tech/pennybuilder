@@ -17,6 +17,7 @@ import reducer, {
 } from './portfolio.reducer';
 import { REQUEST, SUCCESS, FAILURE } from 'app/shared/reducers/action-type.util';
 import { IPortfolio, defaultValue } from 'app/shared/model/portfolio.model';
+import {PositionQuote} from "app/shared/model/iex/quote";
 
 describe('Entities reducer tests', () => {
   function isEmpty(element): boolean {
@@ -35,6 +36,7 @@ describe('Entities reducer tests', () => {
     totalItems: 0,
     updating: false,
     updateSuccess: false,
+    positions: []
   };
 
   function testInitialState(state) {

@@ -41,7 +41,7 @@ public class PortfolioPosition implements Serializable {
     @JsonIgnoreProperties(value = { "positions", "owner" }, allowSetters = true)
     private Portfolio portfolio;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnoreProperties(value = { "portfolioPositions", "watchlistPositions" }, allowSetters = true)
     private Asset asset;
 

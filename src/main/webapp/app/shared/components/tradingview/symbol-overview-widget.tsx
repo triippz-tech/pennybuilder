@@ -26,7 +26,7 @@ export enum DateRange {
 }
 
 export interface ISymbolOverviewWidgetProps {
-  symbols: string[];
+  symbols: [string[]];
   width?: string;
   isTransparent?: boolean;
   showSymbolLogo?: boolean;
@@ -37,7 +37,7 @@ export interface ISymbolOverviewWidgetProps {
 }
 
 const defaultProps: ISymbolOverviewWidgetProps = {
-  symbols: [],
+  symbols: [[]],
   width: "1000",
   height: "400",
   autosize: false,

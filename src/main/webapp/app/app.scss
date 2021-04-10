@@ -34,7 +34,7 @@ a {
     height: calc(100% - 40px);
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 1rem;
+    padding: 5rem 1rem 1rem;
 
     .card {
       padding: 1rem;
@@ -50,6 +50,15 @@ a {
   }
 }
 
+@media (min-width: 768px) {
+  .navbar {
+    top: 46px;
+  }
+
+  .pagewide {
+    height: 60px;
+  }
+}
 .fullscreen {
   position: fixed;
   top: 100px;

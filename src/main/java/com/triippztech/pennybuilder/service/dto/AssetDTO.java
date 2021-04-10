@@ -62,6 +62,15 @@ public class AssetDTO implements Serializable {
         this.updatedDate = updatedDate;
     }
 
+    public AssetDTO() {
+    }
+
+    public AssetDTO(@NotNull String name, @NotNull String symbol, ZonedDateTime createdDate) {
+        this.name = name;
+        this.symbol = symbol;
+        this.createdDate = createdDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

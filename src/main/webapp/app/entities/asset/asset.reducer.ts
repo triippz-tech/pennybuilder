@@ -121,6 +121,14 @@ export const getEntity: ICrudGetAction<IAsset> = id => {
   };
 };
 
+export const searchEntities: ICrudGetAction<IAsset> = (query: string) => {
+  const requestUrl = `${apiUrl}${query ? `query` : ''}`;
+  return {
+    type: ACTION_TYPES.FETCH_ASSET_LIST,
+    payload: axios.get<IAsset>(requestUrl),
+  };
+}
+
 export const createEntity: ICrudPutAction<IAsset> = entity => async dispatch => {
   const result = await dispatch({
     type: ACTION_TYPES.CREATE_ASSET,

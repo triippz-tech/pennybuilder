@@ -6,6 +6,7 @@ import com.triippztech.pennybuilder.service.dto.PortfolioPositionDTO;
 import com.triippztech.pennybuilder.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -183,6 +184,23 @@ public class PortfolioPositionResource {
         return ResponseEntity
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
+            .build();
+    }
+
+    /**
+     * {@code PUT  /portfolio-positions/delete-multiple} : delete the "id" portfolioPosition.
+     *
+     * @param ids the ids of the portfolioPositions to delete.
+     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
+     */
+    @PutMapping("/portfolio-positions/delete-multiple}")
+    public ResponseEntity<Void> deletePortfolioPositions(@RequestBody List<Long> ids) {
+        log.debug("REST request to delete PortfolioPositions : {}", ids);
+        ids.forEach(portfolioPositionRepository::deleteById);
+
+        return ResponseEntity
+            .noContent()
+            .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, ids.toString()))
             .build();
     }
 }

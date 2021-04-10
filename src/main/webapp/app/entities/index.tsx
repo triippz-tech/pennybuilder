@@ -17,13 +17,13 @@ const Routes = ({ match }) => (
   <div>
     <Switch>
       {/* prettier-ignore */}
-      <ErrorBoundaryRoute path={`${match.url}user-profile`} component={UserProfile} />
-      <ErrorBoundaryRoute path={`${match.url}user-setting`} component={UserSetting} />
-      <ErrorBoundaryRoute path={`${match.url}asset`} component={Asset} />
-      <ErrorBoundaryRoute path={`${match.url}portfolio`} component={Portfolio} />
-      <ErrorBoundaryRoute path={`${match.url}portfolio-position`} component={PortfolioPosition} />
-      <ErrorBoundaryRoute path={`${match.url}watchlist`} component={Watchlist} />
-      <ErrorBoundaryRoute path={`${match.url}watchlist-position`} component={WatchlistPosition} />
+      <ErrorBoundaryRoute path={`${match.url}/user-profile`} component={UserProfile} />
+      <ErrorBoundaryRoute path={`${match.url}/user-setting`} component={UserSetting} />
+      <ErrorBoundaryRoute path={`${match.url}/asset`} component={Asset} />
+      <ErrorBoundaryRoute path={`${match.url}/portfolio`} component={Portfolio} />
+      <ErrorBoundaryRoute path={`${match.url}/portfolio-position`} component={PortfolioPosition} />
+      <ErrorBoundaryRoute path={`${match.url}/watchlist`} component={Watchlist} />
+      <ErrorBoundaryRoute path={`${match.url}/watchlist-position`} component={WatchlistPosition} />
       {/* jhipster-needle-add-route-path - JHipster will add routes here */}
     </Switch>
   </div>

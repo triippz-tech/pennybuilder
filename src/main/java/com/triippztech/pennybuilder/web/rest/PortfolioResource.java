@@ -1,26 +1,32 @@
 package com.triippztech.pennybuilder.web.rest;
 
+import com.triippztech.pennybuilder.domain.Portfolio;
+import com.triippztech.pennybuilder.exceptions.AssetExistsInPortfolioException;
 import com.triippztech.pennybuilder.repository.PortfolioRepository;
 import com.triippztech.pennybuilder.service.PortfolioService;
 import com.triippztech.pennybuilder.service.dto.PortfolioDTO;
+import com.triippztech.pennybuilder.service.dto.PortfolioPositionQuoteDTO;
 import com.triippztech.pennybuilder.web.rest.errors.BadRequestAlertException;
+
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.Principal;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import pl.zankowski.iextrading4j.api.stocks.Quote;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -71,7 +77,7 @@ public class PortfolioResource {
     /**
      * {@code PUT  /portfolios/:id} : Updates an existing portfolio.
      *
-     * @param id the id of the portfolioDTO to save.
+     * @param id           the id of the portfolioDTO to save.
      * @param portfolioDTO the portfolioDTO to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated portfolioDTO,
      * or with status {@code 400 (Bad Request)} if the portfolioDTO is not valid,
@@ -102,10 +108,30 @@ public class PortfolioResource {
             .body(result);
     }
 
+    @PutMapping("/portfolios/{id}/add/{symbol}")
+    public ResponseEntity<PortfolioDTO> addSymbol(
+        @PathVariable(value = "id") Long id,
+        @PathVariable(value = "symbol") String symbol
+    ) {
+        log.debug("REST request to add Symbol: {} to Portfolio: {}", symbol, id);
+        if (!portfolioRepository.existsById(id)) {
+            throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
+        }
+        try {
+            PortfolioDTO portfolioDTO = portfolioService.addSymbol(id, symbol);
+            return ResponseEntity
+                .ok()
+                .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, portfolioDTO.getId().toString()))
+                .body(portfolioDTO);
+        } catch (AssetExistsInPortfolioException e) {
+            throw new BadRequestAlertException(e.getMessage() ,ENTITY_NAME, "positionexists");
+        }
+    }
+
     /**
      * {@code PATCH  /portfolios/:id} : Partial updates given fields of an existing portfolio, field will ignore if it is null
      *
-     * @param id the id of the portfolioDTO to save.
+     * @param id           the id of the portfolioDTO to save.
      * @param portfolioDTO the portfolioDTO to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated portfolioDTO,
      * or with status {@code 400 (Bad Request)} if the portfolioDTO is not valid,
@@ -148,6 +174,34 @@ public class PortfolioResource {
     public ResponseEntity<List<PortfolioDTO>> getAllPortfolios(Pageable pageable) {
         log.debug("REST request to get a page of Portfolios");
         Page<PortfolioDTO> page = portfolioService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    /**
+     * {@code GET  /portfolios/positions/{id}} : get all the portfolios.
+     *
+     * @param id the the portfolio ID.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of portfolios in body.
+     */
+    @GetMapping("/portfolios/{id}/positions")
+    public ResponseEntity<List<PortfolioPositionQuoteDTO>> getAllPortfolioPositions(@PathVariable Long id) throws Exception {
+        log.debug("REST request to get a page of Portfolios");
+        List<PortfolioPositionQuoteDTO> batchStocks = portfolioService.getPortfolioPositionsAsQuote(id);
+        if (batchStocks == null) return ResponseEntity.ok().body(null);
+        return ResponseEntity.ok().body(batchStocks);
+    }
+
+    /**
+     * {@code GET  /portfolios/current-user} : get all the portfolios for the current user.
+     *
+     * @param pageable the pagination information.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of portfolios in body.
+     */
+    @GetMapping("/portfolios/current-user")
+    public ResponseEntity<List<Portfolio>> getAllPortfoliosForCurrentUser(Principal principal, Pageable pageable) throws Exception {
+        log.debug("REST request to get a page of Portfolios");
+        Page<Portfolio> page = portfolioService.findAllByUser(pageable, principal);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

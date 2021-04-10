@@ -34,11 +34,13 @@ import { faWrench } from '@fortawesome/free-solid-svg-icons/faWrench';
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons/faFacebookF';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
 import { faChartLine } from '@fortawesome/free-solid-svg-icons/faChartLine';
+import { faCheck } from "@fortawesome/free-solid-svg-icons/faCheck";
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 
 export const loadIcons = () => {
   library.add(
+    faCheck,
     faFacebookF,
     faTwitter,
     faChartLine,

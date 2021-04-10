@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { ICrudGetAction, ICrudGetAllAction, ICrudPutAction, ICrudDeleteAction } from 'react-jhipster';
+import {ICrudDeleteAction, ICrudGetAction, ICrudGetAllAction, ICrudPutAction} from 'react-jhipster';
 
-import { cleanEntity } from 'app/shared/util/entity-utils';
-import { REQUEST, SUCCESS, FAILURE } from 'app/shared/reducers/action-type.util';
+import {cleanEntity} from 'app/shared/util/entity-utils';
+import {FAILURE, REQUEST, SUCCESS} from 'app/shared/reducers/action-type.util';
 
-import { IPortfolioPosition, defaultValue } from 'app/shared/model/portfolio-position.model';
+import {defaultValue, IPortfolioPosition} from 'app/shared/model/portfolio-position.model';
+import {ICrudPutActionCB, ICrudPutActionWithParams} from "app/config/redux-action-type";
 
 export const ACTION_TYPES = {
   FETCH_PORTFOLIOPOSITION_LIST: 'portfolioPosition/FETCH_PORTFOLIOPOSITION_LIST',
@@ -146,6 +147,15 @@ export const partialUpdate: ICrudPutAction<IPortfolioPosition> = entity => async
   return result;
 };
 
+export const partialUpdateCB: ICrudPutActionCB<IPortfolioPosition> = (entity, callback) => async dispatch => {
+  const result = await dispatch({
+    type: ACTION_TYPES.UPDATE_PORTFOLIOPOSITION,
+    payload: axios.put(`${apiUrl}/${entity.id}`, cleanEntity(entity)),
+  });
+  callback();
+  return result;
+};
+
 export const deleteEntity: ICrudDeleteAction<IPortfolioPosition> = id => async dispatch => {
   const requestUrl = `${apiUrl}/${id}`;
   const result = await dispatch({
@@ -153,6 +163,16 @@ export const deleteEntity: ICrudDeleteAction<IPortfolioPosition> = id => async d
     payload: axios.delete(requestUrl),
   });
   dispatch(getEntities());
+  return result;
+};
+
+export const deleteEntities = (ids, getUpdatedPositions) => {
+  const requestUrl = `${apiUrl}/delete-multiple`;
+  const result = {
+    type: ACTION_TYPES.DELETE_PORTFOLIOPOSITION,
+    payload: axios.put(requestUrl, ids),
+  };
+  getUpdatedPositions();
   return result;
 };
 

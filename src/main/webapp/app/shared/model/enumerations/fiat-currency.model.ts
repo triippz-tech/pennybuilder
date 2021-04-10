@@ -341,3 +341,30 @@ export enum FiatCurrency {
 
   ZWL = 'ZWL',
 }
+
+function enumKeys<E>(e: E): (keyof E)[] {
+  return Object.keys(e) as (keyof E)[];
+}
+
+
+
+export function fiatCurrencyAsOptions() {
+  const fiatList = [] as string[];
+  for (const key of enumKeys(FiatCurrency)) {
+    const fiat: string = FiatCurrency[key];
+    fiatList.push(fiat);
+  }
+  return fiatList;
+}
+
+export function fiatCurrencyAsOptions2() {
+  const fiatList = [];
+  for (const key of enumKeys(FiatCurrency)) {
+    const fiat: string = FiatCurrency[key];
+    fiatList.push({
+      value: fiat,
+      label: fiat
+    });
+  }
+  return fiatList;
+}
