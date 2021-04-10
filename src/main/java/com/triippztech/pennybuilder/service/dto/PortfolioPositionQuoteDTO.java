@@ -64,13 +64,13 @@ public class PortfolioPositionQuoteDTO implements Serializable {
         this.symbol = quote.getSymbol();
         this.companyName = quote.getCompanyName();;
         this.volume = quote.getVolume();
-        this.iexRealtimePrice = quote.getIexRealtimePrice();
+        this.iexRealtimePrice = quote.getLatestPrice();
         this.change = quote.getChange();
         this.changePercent = quote.getChangePercent();
         this.marketCap = quote.getMarketCap();
         this.week52High = quote.getWeek52High();
         this.week52Low = quote.getWeek52Low();
-        this.totalValue = quote.getIexRealtimePrice().multiply(BigDecimal.valueOf(portfolioPosition.getQuantity()));
+        this.totalValue = quote.getLatestPrice().multiply(BigDecimal.valueOf(portfolioPosition.getQuantity()));
     }
 
     public Long getId() {
