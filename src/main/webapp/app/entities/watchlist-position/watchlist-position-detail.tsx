@@ -47,11 +47,11 @@ export const WatchlistPositionDetail = (props: IWatchlistPositionDetailProps) =>
           <dt>Asset</dt>
           <dd>{watchlistPositionEntity.asset ? watchlistPositionEntity.asset.id : ''}</dd>
         </dl>
-        <Button tag={Link} to="/watchlist-position" replace color="info" data-cy="entityDetailsBackButton">
+        <Button tag={Link} to="/admin/entities/watchlist-position" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>
         </Button>
         &nbsp;
-        <Button tag={Link} to={`/watchlist-position/${watchlistPositionEntity.id}/edit`} replace color="primary">
+        <Button tag={Link} to={`/admin/entities/watchlist-position/${watchlistPositionEntity.id}/edit`} replace color="primary">
           <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
         </Button>
       </Col>

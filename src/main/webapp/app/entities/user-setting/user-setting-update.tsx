@@ -22,7 +22,7 @@ export const UserSettingUpdate = (props: IUserSettingUpdateProps) => {
   const { userSettingEntity, users, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/user-setting');
+    props.history.push('/admin/entities/user-setting');
   };
 
   useEffect(() => {
@@ -152,7 +152,7 @@ export const UserSettingUpdate = (props: IUserSettingUpdateProps) => {
                     : null}
                 </AvInput>
               </AvGroup>
-              <Button tag={Link} id="cancel-save" to="/user-setting" replace color="info">
+              <Button tag={Link} id="cancel-save" to="/admin/entities/user-setting" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">Back</span>

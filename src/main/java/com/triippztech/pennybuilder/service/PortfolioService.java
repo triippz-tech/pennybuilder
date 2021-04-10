@@ -12,6 +12,7 @@ import com.triippztech.pennybuilder.service.mapper.PortfolioMapper;
 
 import java.security.Principal;
 import java.time.ZonedDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -178,6 +179,8 @@ public class PortfolioService {
     public List<PortfolioPositionQuoteDTO> getPortfolioPositionsAsQuote(Long portfolioId) {
         log.debug("Request to get PortfolioPositions as Quote for Portfolio: {}", portfolioId);
         var positionList = portfolioPositionRepository.findAllByPortfolio_Id(portfolioId);
+        if (positionList.isEmpty()) return Collections.emptyList();
+
         Map<String, PortfolioPosition> positionMap = positionList.stream()
             .collect(Collectors.toMap(position -> position.getAsset().getSymbol(), position -> position));
 

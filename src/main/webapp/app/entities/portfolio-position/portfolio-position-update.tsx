@@ -24,7 +24,7 @@ export const PortfolioPositionUpdate = (props: IPortfolioPositionUpdateProps) =>
   const { portfolioPositionEntity, portfolios, assets, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/portfolio-position' + props.location.search);
+    props.history.push('/admin/entities/portfolio-position' + props.location.search);
   };
 
   useEffect(() => {
@@ -161,7 +161,7 @@ export const PortfolioPositionUpdate = (props: IPortfolioPositionUpdateProps) =>
                     : null}
                 </AvInput>
               </AvGroup>
-              <Button tag={Link} id="cancel-save" to="/portfolio-position" replace color="info">
+              <Button tag={Link} id="cancel-save" to="/admin/entities/portfolio-position" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">Back</span>

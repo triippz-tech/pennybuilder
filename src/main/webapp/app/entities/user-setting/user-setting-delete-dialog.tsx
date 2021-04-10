@@ -16,7 +16,7 @@ export const UserSettingDeleteDialog = (props: IUserSettingDeleteDialogProps) =>
   }, []);
 
   const handleClose = () => {
-    props.history.push('/user-setting');
+    props.history.push('/admin/entities/user-setting');
   };
 
   useEffect(() => {

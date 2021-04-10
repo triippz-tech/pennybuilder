@@ -22,7 +22,7 @@ export const WatchlistUpdate = (props: IWatchlistUpdateProps) => {
   const { watchlistEntity, users, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/watchlist' + props.location.search);
+    props.history.push('/admin/entities/watchlist' + props.location.search);
   };
 
   useEffect(() => {
@@ -142,7 +142,7 @@ export const WatchlistUpdate = (props: IWatchlistUpdateProps) => {
                     : null}
                 </AvInput>
               </AvGroup>
-              <Button tag={Link} id="cancel-save" to="/watchlist" replace color="info">
+              <Button tag={Link} id="cancel-save" to="/admin/entities/watchlist" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">Back</span>

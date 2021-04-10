@@ -24,7 +24,7 @@ export const WatchlistPositionUpdate = (props: IWatchlistPositionUpdateProps) =>
   const { watchlistPositionEntity, watchlists, assets, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/watchlist-position' + props.location.search);
+    props.history.push('/admin/entities/watchlist-position' + props.location.search);
   };
 
   useEffect(() => {
@@ -139,7 +139,7 @@ export const WatchlistPositionUpdate = (props: IWatchlistPositionUpdateProps) =>
                     : null}
                 </AvInput>
               </AvGroup>
-              <Button tag={Link} id="cancel-save" to="/watchlist-position" replace color="info">
+              <Button tag={Link} id="cancel-save" to="/admin/entities/watchlist-position" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">Back</span>

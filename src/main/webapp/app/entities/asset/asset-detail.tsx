@@ -43,11 +43,11 @@ export const AssetDetail = (props: IAssetDetailProps) => {
           </dt>
           <dd>{assetEntity.updatedDate ? <TextFormat value={assetEntity.updatedDate} type="date" format={APP_DATE_FORMAT} /> : null}</dd>
         </dl>
-        <Button tag={Link} to="/asset" replace color="info" data-cy="entityDetailsBackButton">
+        <Button tag={Link} to="/admin/entities/asset" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>
         </Button>
         &nbsp;
-        <Button tag={Link} to={`/asset/${assetEntity.id}/edit`} replace color="primary">
+        <Button tag={Link} to={`/admin/entities/asset/${assetEntity.id}/edit`} replace color="primary">
           <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
         </Button>
       </Col>

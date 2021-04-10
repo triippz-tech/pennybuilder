@@ -16,7 +16,7 @@ export const AssetDeleteDialog = (props: IAssetDeleteDialogProps) => {
   }, []);
 
   const handleClose = () => {
-    props.history.push('/asset' + props.location.search);
+    props.history.push('/admin/entities/asset' + props.location.search);
   };
 
   useEffect(() => {

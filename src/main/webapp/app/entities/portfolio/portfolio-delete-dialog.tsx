@@ -16,7 +16,7 @@ export const PortfolioDeleteDialog = (props: IPortfolioDeleteDialogProps) => {
   }, []);
 
   const handleClose = () => {
-    props.history.push('/portfolio' + props.location.search);
+    props.history.push('admin/entities/portfolio' + props.location.search);
   };
 
   useEffect(() => {

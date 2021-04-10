@@ -57,11 +57,11 @@ export const UserSettingDetail = (props: IUserSettingDetailProps) => {
           <dt>User</dt>
           <dd>{userSettingEntity.user ? userSettingEntity.user.id : ''}</dd>
         </dl>
-        <Button tag={Link} to="/user-setting" replace color="info" data-cy="entityDetailsBackButton">
+        <Button tag={Link} to="/admin/entities/user-setting" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>
         </Button>
         &nbsp;
-        <Button tag={Link} to={`/user-setting/${userSettingEntity.id}/edit`} replace color="primary">
+        <Button tag={Link} to={`/admin/entities/user-setting/${userSettingEntity.id}/edit`} replace color="primary">
           <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
         </Button>
       </Col>

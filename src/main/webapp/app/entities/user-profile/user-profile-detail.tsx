@@ -85,11 +85,11 @@ export const UserProfileDetail = (props: IUserProfileDetailProps) => {
           <dt>User</dt>
           <dd>{userProfileEntity.user ? userProfileEntity.user.id : ''}</dd>
         </dl>
-        <Button tag={Link} to="/user-profile" replace color="info" data-cy="entityDetailsBackButton">
+        <Button tag={Link} to="/admin/entities/user-profile" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>
         </Button>
         &nbsp;
-        <Button tag={Link} to={`/user-profile/${userProfileEntity.id}/edit`} replace color="primary">
+        <Button tag={Link} to={`/admin/entities/user-profile/${userProfileEntity.id}/edit`} replace color="primary">
           <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
         </Button>
       </Col>

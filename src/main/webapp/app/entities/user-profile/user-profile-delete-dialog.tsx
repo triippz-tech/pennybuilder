@@ -16,7 +16,7 @@ export const UserProfileDeleteDialog = (props: IUserProfileDeleteDialogProps) =>
   }, []);
 
   const handleClose = () => {
-    props.history.push('/user-profile');
+    props.history.push('/admin/entities/user-profile');
   };
 
   useEffect(() => {

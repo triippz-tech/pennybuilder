@@ -24,7 +24,7 @@ export const UserProfileUpdate = (props: IUserProfileUpdateProps) => {
   const { bio } = userProfileEntity;
 
   const handleClose = () => {
-    props.history.push('/user-profile');
+    props.history.push('/admin/entities/user-profile');
   };
 
   useEffect(() => {
@@ -186,7 +186,7 @@ export const UserProfileUpdate = (props: IUserProfileUpdateProps) => {
                     : null}
                 </AvInput>
               </AvGroup>
-              <Button tag={Link} id="cancel-save" to="/user-profile" replace color="info">
+              <Button tag={Link} id="cancel-save" to="/admin/entities/user-profile" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">Back</span>

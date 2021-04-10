@@ -22,7 +22,7 @@ export const PortfolioUpdate = (props: IPortfolioUpdateProps) => {
   const { portfolioEntity, users, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/portfolio' + props.location.search);
+    props.history.push('admin/entities/portfolio' + props.location.search);
   };
 
   useEffect(() => {

@@ -53,11 +53,11 @@ export const PortfolioDetail = (props: IPortfolioDetailProps) => {
           <dt>Owner</dt>
           <dd>{portfolioEntity.owner ? portfolioEntity.owner.id : ''}</dd>
         </dl>
-        <Button tag={Link} to="/portfolio" replace color="info" data-cy="entityDetailsBackButton">
+        <Button tag={Link} to="/admin/entities/portfolio" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>
         </Button>
         &nbsp;
-        <Button tag={Link} to={`/portfolio/${portfolioEntity.id}/edit`} replace color="primary">
+        <Button tag={Link} to={`/admin/entities/portfolio/${portfolioEntity.id}/edit`} replace color="primary">
           <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
         </Button>
       </Col>

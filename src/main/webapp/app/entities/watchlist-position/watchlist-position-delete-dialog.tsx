@@ -16,7 +16,7 @@ export const WatchlistPositionDeleteDialog = (props: IWatchlistPositionDeleteDia
   }, []);
 
   const handleClose = () => {
-    props.history.push('/watchlist-position' + props.location.search);
+    props.history.push('/admin/entities/watchlist-position' + props.location.search);
   };
 
   useEffect(() => {
