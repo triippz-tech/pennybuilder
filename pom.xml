@@ -9,7 +9,7 @@
     <artifactId>pennybuilder</artifactId>
     <version>0.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>PennyBuilder</name>
+    <name>Pennybuilder</name>
 
     <repositories>
         <!-- jhipster-needle-maven-repository -->
